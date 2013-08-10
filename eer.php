@@ -861,7 +861,7 @@ function eer_civicrm_post($op, $objectName, $objectId, &$objectRef) {
                                                      'is_active' => 1,
                                                      'contact_check' => array($firstEmergency => $firstEmergency));
               $ids['contact'] = $child;
-              CRM_Contact_BAO_Relationship::create(&$emergency1ChildRelationshipParams, &$ids);
+              CRM_Contact_BAO_Relationship::create($emergency1ChildRelationshipParams, $ids);
             }
             if ($secondEmergency) {
               // create relationship of second emergency contact and child
@@ -872,7 +872,7 @@ function eer_civicrm_post($op, $objectName, $objectId, &$objectRef) {
                                                      'is_active' => 1,
                                                      'contact_check' => array($secondEmergency => $secondEmergency));
 
-              CRM_Contact_BAO_Relationship::create(&$emergency2ChildRelationshipParams, &$ids);
+              CRM_Contact_BAO_Relationship::create($emergency2ChildRelationshipParams, $ids);
             }
           } else {
             $otherChildId = $ids['contact'] = $pContactIds[$pID];
@@ -886,10 +886,10 @@ function eer_civicrm_post($op, $objectName, $objectId, &$objectRef) {
               $otherParentRelationshipResult = civicrm_api('relationship', 'create', $otherParentRelationshipParams);
             } 
             if ($emergency1ChildRelationshipParams) {
-              CRM_Contact_BAO_Relationship::create(&$emergency1ChildRelationshipParams, &$ids);
+              CRM_Contact_BAO_Relationship::create($emergency1ChildRelationshipParams, $ids);
             }
             if ($emergency2ChildRelationshipParams) {
-              CRM_Contact_BAO_Relationship::create(&$emergency2ChildRelationshipParams, &$ids);
+              CRM_Contact_BAO_Relationship::create($emergency2ChildRelationshipParams, $ids);
             }
             if ($is_shareAdd == 1) {
               $householdMemberRelationshipResult = civicrm_api('relationship', 'create', $householdMemberRelationshipParams);
